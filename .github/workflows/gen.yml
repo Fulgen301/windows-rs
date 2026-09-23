@@ -4,22 +4,18 @@ permissions:
   contents: read
 
 on:
-  pull_request:
-    paths-ignore:
-      - '.github/ISSUE_TEMPLATE/**'
-      - 'crates/libs/rdl/rdl.md'
-      - 'docs/**'
   push:
     paths-ignore:
       - '.github/ISSUE_TEMPLATE/**'
       - 'crates/libs/rdl/rdl.md'
       - 'docs/**'
     branches:
-      - master
+      - minimal-features
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/minimal-features' }}
 
 jobs:
   gen:
